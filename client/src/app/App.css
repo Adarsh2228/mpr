@@ -13,3 +13,23 @@ a {
 a:hover {
     text-decoration: none;
 }
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure app takes at least the height of the viewport */
+  }
+  
+  .Content {
+    flex: 1; /* Take up remaining space */
+    padding-bottom: 100px; /* Add padding to the bottom */
+  }
+  
+  footer {
+    margin-top: auto; /* Push footer to bottom */
+  }
+  
+  .content {
+    flex-grow: 1; /* Allow content to grow and take remaining space */
+  }
+  
+  

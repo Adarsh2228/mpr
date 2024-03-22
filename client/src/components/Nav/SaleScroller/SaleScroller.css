@@ -1,0 +1,39 @@
+.slideshow {
+    height: 18vw;
+    max-width: 34vw;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    left: -31vw;
+  }
+  .images {
+    display: flex;
+    height: 100%;
+  }
+  
+  .images img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .mover-1 {
+    animation: moveSlideshow 12s linear infinite;
+  }
+  
+  .mover-2 {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    animation: moveSlideshow 15s linear infinite;
+  }
+  
+  .tech-slideshow:hover .mover-2 {
+    opacity: 1;
+  }
+  
+  @keyframes moveSlideshow {
+    100% { 
+      transform: translateX(-66.6666%);  
+    }
+  }
+  

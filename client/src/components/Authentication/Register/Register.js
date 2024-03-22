@@ -1,14 +1,13 @@
-import RegisterCard from "../../Card/RegisterCard/RegisterCard";
-import './Register.css'
+// Register.js
+import React from 'react';
+import RegisterCard from '../../Card/RegisterCard/RegisterCard';
 
 const Register = () => {
-    return ( 
-        <div className="register__auth__container">
-            <div className="register__auth">
-                <RegisterCard />
-            </div>
-        </div>
-     );
-}
- 
+  return (
+    <div>
+      <RegisterCard />
+    </div>
+  );
+};
+
 export default Register;
