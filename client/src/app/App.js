@@ -13,14 +13,11 @@ import CategoryView from '../routes/CategoryView';
 import SearchView from '../routes/Search';
 import CartItemsProvider from '../Context/CartItemsProvider';
 import Login from '../components/Authentication/Login/Login';
-import Register from '../components/Authentication/Register/Register';
+// import Register from '../components/Authentication/Register/Register';
 import Wishlist from '../components/Wishlist';
 import WishItemsProvider from '../Context/WishItemsProvider';
-// import DrawerNav from '../components/Nav/DrawerNav/DrawerNav';
-// import Checkout from '../components/Checkout/Checkout';
 import SearchProvider from '../Context/SearchProvider';
-import SaleScroller from '../components/Nav/SaleScroller/SaleScroller'; // Import SaleScroller component
-import RegisterCard from '../components/Card/RegisterCard/RegisterCard'; // Import RegisterCard component
+// import RegisterCard from '../components/Card/RegisterCard/RegisterCard'; // Import RegisterCard
 
 function App() {
   return (
@@ -30,7 +27,6 @@ function App() {
           <Router>
             <div className="App">
               <Header />
-              <SaleScroller />
               <div className="content">
                 <Routes>
                   <Route index element={<Home />} />
@@ -49,9 +45,9 @@ function App() {
                   </Route>
                   <Route path="/wishlist" element={<Wishlist />} />
                   <Route path="/search/*" element={<SearchView />} />
-                  <Route path="/login" element={<Login />} />
+                  {/* <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/register-card" element={<RegisterCard />} /> {/* Add route for RegisterCard */}
+                  <Route path="/register-card" element={<RegisterCard />} /> */}
                 </Routes>
               </div>
               <Footer />

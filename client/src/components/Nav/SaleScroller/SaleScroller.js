@@ -1,34 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import Slider from "react-slick";
 import './SaleScroller.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const images = [
-  "https://th.bing.com/th/id/OIP.olKOus3gsbtxXwwDTGYOiAHaH_?w=177&h=191&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-  "https://th.bing.com/th/id/OIP.9EPw9SskcC9syVJIsVlBgQHaE0?w=278&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-  "https://th.bing.com/th/id/OIP.7H405356VXlkdUoAMLuDwAHaDn?rs=1&pid=ImgDetMain"
-];
+const SaleSection = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+  };
 
-const SaleScroller = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentImageIndex(prevIndex => (prevIndex + 1) % images.length);
-    }, 3000); // Change slide every 3 seconds
-
-    return () => clearInterval(intervalId);
-  }, []);
+  const offers = [
+    {
+      id: 1,
+      title: "Amazing Sale on T-Shirts!",
+      description: "Get 50% off on all T-Shirts.",
+      image: "https://via.placeholder.com/300x200.png?text=T-Shirt",
+      link: "/t-shirts",
+    },
+    {
+      id: 2,
+      title: "Limited Time Offer on Hoodies!",
+      description: "Buy 1 Hoodie, get 1 free.",
+      image: "https://via.placeholder.com/300x200.png?text=Hoodie",
+      link: "/hoodies",
+    },
+    {
+      id: 3,
+      title: "Flat 30% Off on Pants!",
+      description: "Shop now and save big on pants.",
+      image: "https://via.placeholder.com/300x200.png?text=Pants",
+      link: "/pants",
+    },
+  ];
 
   return (
-    <div className="slideshow tech-slideshow">
-      <div className="images" style={{ width: `${images.length * 100}%`, transform: `translateX(-${currentImageIndex * (100 / images.length)}%)` }}>
-        {images.map((image, index) => (
-          <img key={index} src={image} alt={`Slide ${index + 1}`} />
+    <div className="sale-section">
+      <h2 className="title">Special Sale Offers</h2>
+      <Slider {...settings}>
+        {offers.map((offer) => (
+          <div key={offer.id} className="slide">
+            <a href={offer.link}>
+              <img src={offer.image} alt={offer.title} className="image" />
+              <div className="content">
+                <h3 className="title">{offer.title}</h3>
+                <p className="description">{offer.description}</p>
+              </div>
+            </a>
+          </div>
         ))}
-        {/* Duplicate the first image to achieve infinite sliding */}
-        <img src={images[0]} alt={`Slide 1`} />
-      </div>
+      </Slider>
     </div>
   );
 };
 
-export default SaleScroller;
+export default SaleSection;

@@ -1,3 +1,4 @@
+/* Base styles for links */
 a {
     text-decoration: none;
     color: rgb(0, 0, 0);
@@ -7,6 +8,17 @@ a:hover {
     color: black;
 }
 
+/* Styles for navigation links in bottom container */
+.nav__bottom__container {
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative;
+    z-index: 100;
+}
+
 .nav__bottom__container a {
     text-decoration: none;
     color: rgb(3, 3, 3);
@@ -14,47 +26,60 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(250 250 250);
+    box-shadow: 0px 3px 5px rgb(187 200 31 / 10%);
+    border-radius: 5px;
+    transform: translateY(0px) skewX(0deg) rotateX(0deg);
+    transition: all 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    perspective: 1000px;
 }
 
+/* Hover styles for navigation links in bottom container */
 .nav__bottom__container a:hover {
     color: rgb(113, 113, 113);
+    transform: rotate(360deg); /* Rotate the icon 360 degrees on hover */
+    font-weight: bold; /* Change font weight to bold on hover */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15); /* Add shadow on hover */
 }
 
-.nav__bottom__container {
-    height: 50px;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 100;
-}
-
-.bottom__container {
-    margin: auto;
-    display: flex;
-    align-items: center;
-    flex-direction: row
-}
-
-.container .nav-link {
-    color: black;
-}
-
-.control__small {
-    width: 50%;
-    height: auto;
-    display: none;
-}
-
+/* Media query for hiding bottom navigation container on smaller screens */
 @media screen and (max-width: 780px) {
-    .nav__bottom__container{
+    .nav__bottom__container {
         display: none;
     }
 }
 
+/* Media query for displaying control_small on smaller screens */
 @media screen and (max-width: 780px) {
-    .control__small{
-       display: flex;
-       margin: auto 10px;
+    .control__small {
+        display: flex;
+        margin: auto 10px;
     }
+}
+
+/* Define the animation for hovering effect */
+@keyframes tiltAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Apply tilt animation on hovering */
+.nav__bottom__container a:hover {
+    animation: tiltAnimation 0.5s ease-in-out; /* Apply tilt animation */
+}
+
+/* Add a transition effect for smoother animation */
+.nav__bottom__container a {
+    transition: all 0.3s ease;
 }

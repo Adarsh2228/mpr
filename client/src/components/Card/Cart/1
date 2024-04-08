@@ -1,0 +1,27 @@
+import { useState } from 'react';
+import Cart from './Cart';
+import Checkout from './Checkout';
+
+const CheckoutWrapper = () => {
+  const [showCart, setShowCart] = useState(true);
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  const handlePaymentClick = () => {
+    setShowCart(false);
+    setShowCheckout(true);
+  };
+
+  const handleCartClick = () => {
+    setShowCart(true);
+    setShowCheckout(false);
+  };
+
+  return (
+    <div className="checkout-wrapper">
+      {showCart && <Cart onClick={handlePaymentClick} />}
+      {showCheckout && <Checkout onClick={handleCartClick} />}
+    </div>
+  );
+};
+
+export default CheckoutWrapper;
