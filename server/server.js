@@ -13,11 +13,17 @@
 // app.use('/api/items', require("./routes/items"));
 // app.use('/api/payment', cors(), require("./routes/payment"));
 
+<<<<<<< HEAD
 // // connect to the mongodb database
 // connectDB();
+=======
+// connect to the mongodb database
+connectDB() 
+>>>>>>> 72a9267b7a3b1df6d6f359a4523912063f0d70e8
 
 // app.listen(PORT, () => console.log("Server is running on port ", PORT));
 
+<<<<<<< HEAD
 // // Assuming your model is defined in a separate file
 // const Item = require("./models/itemsModel");
 
@@ -105,3 +111,6 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+=======
+app.listen(PORT, console.log("Server is running on port ", PORT))
+>>>>>>> 72a9267b7a3b1df6d6f359a4523912063f0d70e8
