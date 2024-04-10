@@ -1,35 +1,40 @@
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@500&family=Ubuntu:wght@500&display=swap');
 
+/* Apply Roboto font to all elements */
 * {
     font-family: 'Roboto', sans-serif;
 }
 
+/* Style anchor tags */
 a {
     text-decoration: none;
     color: #000;
 }
 
-
 a:hover {
     text-decoration: none;
 }
+
+/* App container */
 .App {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensure app takes at least the height of the viewport */
-  }
-  
-  .Content {
+}
+
+/* Content container */
+.Content {
     flex: 1; /* Take up remaining space */
     padding-bottom: 100px; /* Add padding to the bottom */
-  }
-  
-  footer {
+}
+
+/* Footer */
+footer {
     margin-top: auto; /* Push footer to bottom */
-  }
-  
-  .content {
+}
+
+/* Content section */
+.content {
     flex-grow: 1; /* Allow content to grow and take remaining space */
-  }
-  
-  
+}

@@ -21,7 +21,7 @@ const ItemCard = (props) => {
     }
 
     return ( 
-        <div className="product__card__card">
+        <div key={props.item._id} className="product__card__card"> {/* Add key prop here */}
             <div className="product__card">
                 <div className="product__image" 
                     onMouseEnter={() => setIsHovered(true)}
@@ -54,5 +54,5 @@ const ItemCard = (props) => {
         </div>
      );
 }
- 
+
 export default ItemCard;

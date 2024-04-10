@@ -8,7 +8,7 @@ import { TabTitle } from "../utils/General";
 
 const Home = () => {
     const [ featuredItems, setFeaturedItems ] = useState()
-    TabTitle("Home - Shema");
+    TabTitle("Home - TSEC");
 
     useEffect(() => {
         axios.get("backend url")

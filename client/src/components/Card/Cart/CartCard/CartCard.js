@@ -34,14 +34,16 @@ const CartCard = (props) => {
     };
 
     return (
-        <div className='cart__item__card'>
-            <div className="cart__item__detail">
-                <div className="cart__item__image">
-                    <img src={`https://shema-ecommerce.herokuapp.com/${props.item.category}/${props.item.image[0].filename}`} alt="item" className="item__image"/>
+        <div className='cart_item_card'>
+            <div className="cart_item_detail">
+                <div className="cart_item_image">
+                    {console.log(props.item.image[0])}
+                    {/* client\src\asset\Products\cloth\men\suits\zegna-1.jpg */}
+                    <img src={`https://shema-backend.vercel.app/public/${props.item.category}/${props.item.image[0].filename}`} alt="item" className="item__image"/>
                 </div>
-                <div className="cart__item__name">{props.item.name}</div>
+                <div className="cart_item_name">{props.item.name}</div>
             </div>
-            <div className="cart__item__quantity">
+            <div className="cart_item_quantity">
                 <IconButton onClick={handelQuantityIncrement}>
                     <AddCircleIcon />
                 </IconButton>
@@ -64,8 +66,8 @@ const CartCard = (props) => {
                     </FormControl>
                 </Box>
             </div>
-            <div className="cart__item__price">${props.item.price}</div>
-            <div className="remove__item__icon">
+            <div className="cart_item_price">${props.item.price}</div>
+            <div className="remove_item_icon">
                 <IconButton>
                     <HighlightOffIcon onClick={handelRemoveItem}/>
                 </IconButton>
@@ -74,4 +76,4 @@ const CartCard = (props) => {
      );
 }
  
-export default CartCard;
+export default CartCard;

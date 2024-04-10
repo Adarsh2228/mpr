@@ -13,11 +13,11 @@ import CategoryView from '../routes/CategoryView';
 import SearchView from '../routes/Search';
 import CartItemsProvider from '../Context/CartItemsProvider';
 import Login from '../components/Authentication/Login/Login';
-// import Register from '../components/Authentication/Register/Register';
+import Register from '../components/Authentication/Register/Register';
 import Wishlist from '../components/Wishlist';
 import WishItemsProvider from '../Context/WishItemsProvider';
 import SearchProvider from '../Context/SearchProvider';
-// import RegisterCard from '../components/Card/RegisterCard/RegisterCard'; // Import RegisterCard
+import Payment from '../components/Payment';
 
 function App() {
   return (
@@ -45,9 +45,8 @@ function App() {
                   </Route>
                   <Route path="/wishlist" element={<Wishlist />} />
                   <Route path="/search/*" element={<SearchView />} />
-                  {/* <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/register-card" element={<RegisterCard />} /> */}
+                  <Route path="/payment*" element={<Payment />} />
                 </Routes>
               </div>
               <Footer />
