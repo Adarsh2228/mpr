@@ -1,40 +1,93 @@
-
 .registration-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  }
-  
-  .registration-form {
+}
+
+.registration-form {
   width: 300px;
   padding: 20px;
-  border: 1px solid #ccc;
   border-radius: 5px;
+  animation: changeBorderProperties 18s infinite; /* Animation to change border properties every 18 seconds */
+  margin-top: -172px; /* Add margin-top to adjust position */
+}
+
+@keyframes changeBorderProperties {
+  0% {
+    border: 1px solid #ccc; /* Initial border color and thickness */
+    box-shadow: none; /* No shadow initially */
   }
-  
-  .registration-header {
+  15% {
+    border: 2px solid #ff5733; /* Border color change at 15% of animation duration with increased thickness */
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+  }
+  30% {
+    border: 3px solid #ffd700; /* Border color change at 30% of animation duration with increased thickness */
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+  }
+  45% {
+    border: 4px solid #007bff; /* Border color change at 45% of animation duration with increased thickness */
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+  }
+  60% {
+    border: 5px solid #4CAF50; /* Border color change at 60% of animation duration with increased thickness */
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+  }
+  75% {
+    border: 6px solid #ff5733; /* Border color change at 75% of animation duration with increased thickness */
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+  }
+  90% {
+    border: 7px solid #ffd700; /* Border color change at 90% of animation duration with increased thickness */
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+  }
+  100% {
+    border: 8px solid #007bff; /* Final border color at the end of animation duration with increased thickness */
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+  }
+}
+
+.registration-header {
   text-align: center;
   margin-bottom: 20px;
-  }
-  
-  .field-container {
+}
+
+.field-container {
   margin-bottom: 15px;
-  }
-  
-  .field-container label {
+}
+
+.field-container label {
   display: block;
   margin-bottom: 5px;
-  }
-  
-  .field-container input {
+}
+
+.field-container input {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
   border-radius: 4px;
+  animation: changeInputBorderProperties 12s infinite; /* Animation to change input border properties every 12 seconds */
+}
+
+@keyframes changeInputBorderProperties {
+  0% {
+    border: 1px solid #ccc; /* Initial border color and thickness */
   }
-  
-  .submit-button {
+  15% {
+    border: 1px solid #ff5733; /* Border color change at 15% of animation duration with increased thickness */
+  }
+  30% {
+    border: 2px solid #ffd700; /* Border color change at 30% of animation duration with increased thickness */
+  }
+  45% {
+    border: 2px solid #007bff; /* Border color change at 45% of animation duration with increased thickness */
+  }
+  60% {
+    border: 3px solid #4CAF50; /* Final border color at the end of animation duration with increased thickness */
+  }
+}
+
+.submit-button {
   width: 100%;
   padding: 10px;
   border: none;
@@ -42,9 +95,8 @@
   background-color: #007bff;
   color: white;
   cursor: pointer;
-  }
-  
-  .submit-button.submitted {
+}
+
+.submit-button.submitted {
   background-color: #4CAF50;
-  }
-  
+}
