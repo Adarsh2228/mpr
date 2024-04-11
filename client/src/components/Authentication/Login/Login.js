@@ -1,84 +1,68 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
-import { FaUser, FaLock, FaPlus } from 'react-icons/fa';
+import axios from 'axios';
+import './Login.css'; // Ensure you have the CSS file for styling
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate();
+export default function Login() {
+const [username, setUsername] = useState('');
+const [password, setPassword] = useState('');
+const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('/api/check-user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
+const handleLogin = async (e) => {
+e.preventDefault(); // Prevent default form submission behavior
 
-      if (response.ok) {
-        const data = await response.json();
-        setErrorMessage('');
-        setSuccessMessage(data.message);
-        navigate('/dashboard');
-      } else {
-        const data = await response.json();
-        setErrorMessage(data.message);
-        setSuccessMessage('');
-      }
-    } catch (error) {
-      console.error('Error checking user:', error.message);
-      setErrorMessage('Error checking user. Please try again.');
-      setSuccessMessage('');
-    }
-  };
+if (username === '' || password === '') {
+alert('Please enter both username and password.');
+return;
+}
 
-  const handleNewAccountClick = () => {
-    navigate('/register');
-  };
+try {
+const response = await axios.post('http://localhost:5000/api/user/login', {
+username,
+password,
+});
 
-  return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
-        <label htmlFor="username" className="login-label">
-          <FaUser className="icon" />
-          Username
-        </label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="login-input"
-        />
-        <label htmlFor="password" className="login-label">
-          <FaLock className="icon" />
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="login-input"
-        />
-        <button type="submit" className="login-button">
-          GET STARTED
-        </button>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        {successMessage && <p className="success-message">{successMessage}</p>}
-        <button className="create-account-button" onClick={handleNewAccountClick}>
-          <FaPlus className="icon" />
-          CREATE NEW ACCOUNT
-        </button>
-      </form>
-    </div>
-  );
+if (response.data && response.data.token) {
+localStorage.setItem('token', response.data.token);
+alert('Login Successfully.');
+navigate('/'); // Navigate to homepage or dashboard
+} else {
+alert('Login failed. Please try again.');
+}
+} catch (error) {
+alert('Login failed. Please try again.');
+}
 };
 
-export default Login;
+return (
+<div className="login-container">
+<form onSubmit={handleLogin} className="login-form">
+<h1>LOGIN</h1>
+<div className="form-group">
+<input
+type="text"
+value={username}
+onChange={(e) => setUsername(e.target.value)}
+placeholder="Username"
+required
+/>
+</div>
+<div className="form-group">
+<input
+type="password"
+value={password}
+onChange={(e) => setPassword(e.target.value)}
+placeholder="Password"
+required
+/>
+</div>
+<button type="submit">LOGIN</button>
+</form>
+<div className="login-links">
+<a href="#" className="forgot-password">Forgot Password?</a>
+<a href="/register" className="signup">Signup</a>
+</div>
+</div>
+);
+}
+
