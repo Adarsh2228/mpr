@@ -67,6 +67,7 @@ const cors = require('cors');
 const app = express();
 const User=require("./models/User")
 const stripe = require('stripe')('sk_test_51NkUQgSDWmLXZZwiNowpbbX5exLS6gIuIZdapQScxxocrSziQ4W8hEtkCfzLgpSmA7qshnIULDEZCDUAHSkNd7Bj00JSVyq3uJ');
+const nodemailer = require('nodemailer');
 
 
 
@@ -124,23 +125,59 @@ app.listen(PORT, () => {
 console.log(`Server is running on port ${PORT}`);
 });
 
-app.post('/api/payment', async (req, res) => {
-  const { amount, reason } = req.body;
-  console.log(amount,reason)
 
-  try {
-    // Create a PaymentIntent with the amount
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount * 100, // Stripe expects amount in cents
-      currency: 'usd', // Specify currency
-      description: reason, // Provide a description (optional)
-    });
- 
-    console.log(paymentIntent)
-    // Return the client secret to the frontend
-    res.json({ clientSecret: paymentIntent.client_secret });
-  } catch (error) {
-    console.error('Error processing payment:', error.message);
-    res.status(500).json({ error: error.message });
+
+// Nodemailer configuration
+const mailTransporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  auth: {
+      user: "shiroshetty30@gmail.com", // Update with your email address
+      pass: "ibaymoahwvqddpty" // Update with your email password
   }
 });
+
+// Endpoint to process payments
+app.post('/api/payment', async (req, res) => {
+  const { amount, reason} = req.body; // Extract userEmail from request body
+  console.log(amount, reason);
+
+  try {
+      // Create a PaymentIntent with the amount
+      const paymentIntent = await stripe.paymentIntents.create({
+          amount: amount * 100, // Stripe expects amount in cents
+          currency: 'usd', // Specify currency
+          description: reason,
+          // Provide a description (optional)
+      });
+
+      // Send payment success email to user
+      const mailOptionsPaymentSuccess = {
+          from: 'shiroshetty30@gmail.com', // Sender address
+          to: 'shuklaadarsh2228@gmail.com', // User's email address
+          subject: 'Payment Successful',
+          text: `Dear User,\n\nYour payment of ${amount} USD has been successfully processed. Thank you for your payment.`
+      };
+
+      // Send payment success email
+      mailTransporter.sendMail(mailOptionsPaymentSuccess, (error, info) => {
+          if (error) {
+              console.error('Error sending payment success email:', error);
+          } else {
+              console.log('Payment success email sent: %s', info.messageId);
+          }
+      });
+
+      // Return the client secret to the frontend
+      res.json({ clientSecret: paymentIntent.client_secret });
+  } catch (error) {
+      console.error('Error processing payment:', error.message);
+      res.status(500).json({ error: error.message });
+  }
+});
+
+// Start the server
+// app.listen(port, () => {
+//   console.log(Server is running on http://localhost:${port});
+// });
