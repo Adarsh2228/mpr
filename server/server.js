@@ -157,7 +157,7 @@ app.post('/api/payment', async (req, res) => {
           from: 'shiroshetty30@gmail.com', // Sender address
           to: 'shuklaadarsh2228@gmail.com', // User's email address
           subject: 'Payment Successful',
-          text: `Dear User,\n\nYour payment of ${amount} USD has been successfully processed. Thank you for your payment.`
+          text: `Dear User,\n\nYour payment of ${amount} USD has been successfully processed. Thank you for your payment.\n\n ENJOY YOUR SHOPPING!!!!`
       };
 
       // Send payment success email
