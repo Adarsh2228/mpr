@@ -12,7 +12,7 @@ const CategoryView = () => {
     const [ loading , setLoading ] = useState(true) 
 
     useEffect(() => {
-        axios.get("backend url")
+        axios.get("https://shema-backend.vercel.app/api/items")
             .then(res => {
                 setMenItems(res.data.filter((item) => item.category === "men"))
                 setKidsItems(res.data.filter((item) => item.category === "kids" ))
@@ -23,7 +23,7 @@ const CategoryView = () => {
 
         window.scrollTo(0, 0)
     }, [param.id])
-    
+     
     return ( 
         <div className='d-flex min-vh-100 w-100 justify-content-center align-items-center m-auto'>
             {loading && <ReactLoading type="balls" color='#FFE26E' height={100} width={100} className='m-auto'/>}
