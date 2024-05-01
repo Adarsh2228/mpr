@@ -2,21 +2,22 @@ import { useState } from "react";
 import { SearchContext } from "./SearchContext";
 
 const SearchProvider = (props) => {
-    const [ query, setQuery ] = useState()
+    const [query, setQuery] = useState("");
 
     const setSearchQuery = (queryParam) => {
-        setQuery(queryParam)
-    }
+        setQuery(queryParam);
+    };
 
     const searchCtx = {
         searchQuery: query,
         setSearchQuery: setSearchQuery
-    }
-    return ( 
+    };
+
+    return (
         <SearchContext.Provider value={searchCtx}>
             {props.children}
         </SearchContext.Provider>
-     );
-}
- 
+    );
+};
+
 export default SearchProvider;
